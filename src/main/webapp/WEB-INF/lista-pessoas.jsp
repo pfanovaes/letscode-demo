@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 
 <%
-    String titulo = "Lista de pesssoas";
+    //Scriplets
+    //String titulo = "Lista de pesssoas";
 %>
 <!doctype html>
 <html lang="en">
@@ -15,7 +16,7 @@
 </head>
 <body>
 <%--    <% out.println(titulo); %> = <%= titulo %>  --%>
-    <%= titulo %>
+<h3> ${ titulo } </h3>
     <% List<Pessoa> pessoas = (List<Pessoa>) request.getAttribute("pessoas"); %>
     <% for (Pessoa pessoa: pessoas) { %>
 

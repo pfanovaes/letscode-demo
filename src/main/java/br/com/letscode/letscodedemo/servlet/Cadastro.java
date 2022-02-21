@@ -49,6 +49,7 @@ public class Cadastro extends HttpServlet {
 
        List<Pessoa> pessoas = bd.listar();
        req.setAttribute("pessoas", pessoas );
+       req.setAttribute("titulo", "Página de listagem de pessoas");
        req.getRequestDispatcher("WEB-INF/lista-pessoas.jsp").forward(req, resp);
 
    }
