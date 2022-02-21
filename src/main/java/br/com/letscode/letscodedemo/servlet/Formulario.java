@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Formulario extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/formulario.html").forward(req, res);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("WEB-INF/formulario.html").forward(req, resp);
     }
 }
