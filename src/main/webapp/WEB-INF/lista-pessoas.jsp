@@ -14,14 +14,19 @@
     <title>Lista de pessoas</title>
 </head>
 <body>
-    <% out.println(titulo); %>
+<%--    <% out.println(titulo); %> = <%= titulo %>  --%>
+    <%= titulo %>
     <% List<Pessoa> pessoas = (List<Pessoa>) request.getAttribute("pessoas"); %>
+    <% for (Pessoa pessoa: pessoas) { %>
+
     <ul>
-        <li>nome: </li>
-        <li>sobrenome: </li>
-        <li>idade: </li>
-        <li>data: </li>
+        <li>nome: <%= pessoa.getNome() %></li>
+        <li>sobrenome: <%= pessoa.getSobrenome() %></li>
+        <li>idade: <%= pessoa.getIdade() %></li>
+        <li>data: <%= pessoa.getData() %></li>
     </ul>
+    <% } %>
+
 
 </body>
 </html>
