@@ -27,8 +27,16 @@ public class Controlador extends HttpServlet {
             Pessoa pessoa = new Pessoa(nome, sobrenome, idade, data);
             // chama método responsável
             cadastro(pessoa);
+            resp.sendRedirect("/app/controlador?acao=listar-pessoas");
         } else if (acao.equals("listar-pessoas")) {
             listar(req, resp);
+        } else if (acao.equals("remover-pessoas")) {
+            String id = req.getParameter("id");
+            remover(id);
+        } else if (acao.equals("alterar-pessoas")) {
+            //implementar
+        } else if (acao.equals("criar-pessoas-form")) {
+            req.getRequestDispatcher("WEB-INF/formulario.html").forward(req, resp);
         }
     }
 
@@ -49,5 +57,9 @@ public class Controlador extends HttpServlet {
         } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
+    }
+
+    public void remover(String id){
+        //implementar remover
     }
 }

@@ -33,19 +33,7 @@ public class Cadastro extends HttpServlet {
 
        //Usuario user = new Usuario(nome, sobrenome, idade, data)
 
-        /*
-       resp.setContentType("text/html");
-       PrintWriter writer = resp.getWriter();
-       writer.println("página de cadastro acessada");
 
-       for (Pessoa pessoa: bd.listar()) {
-           writer.println("<ul>");
-           writer.println("<li>nome: " + pessoa.getNome() + "</li>");
-           writer.println("<li>sobrenome: " + pessoa.getSobrenome() + "</li>");
-           writer.println("<li>idade: " + pessoa.getIdade()+ "</li>");
-           writer.println("<li>data: " + pessoa.getData() + "</li>");
-           writer.println("</ul>");
-       }*/
 
        List<Pessoa> pessoas = bd.listar();
        req.setAttribute("pessoas", pessoas );

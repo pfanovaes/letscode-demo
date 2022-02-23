@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP - Hello World</title>
+        <title>App de Cadastro</title>
     </head>
     <body>
         <h1><%= "APP de Pessoas" %></h1>
     <br/>
         <ul>
             <li>
-                <a href="/app/formulario.html">Cadastrar pessoa</a>
+                <a href="/app/controlador?acao=criar-pessoas-form">Cadastrar pessoa</a>
+            </li>
+            <li>
+                <a href="/app/controlador?acao=listar-pessoas">Listar pessoas</a>
             </li>
         </ul>
 
