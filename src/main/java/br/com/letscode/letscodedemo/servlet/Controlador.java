@@ -36,7 +36,7 @@ public class Controlador extends HttpServlet {
         } else if (acao.equals("alterar-pessoas")) {
             //implementar
         } else if (acao.equals("criar-pessoas-form")) {
-            req.getRequestDispatcher("WEB-INF/formulario.html").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/view/formulario.html").forward(req, resp);
         }
     }
 
@@ -53,7 +53,7 @@ public class Controlador extends HttpServlet {
         req.setAttribute("titulo", "Página de listagem de pessoas");
 
         try {
-            req.getRequestDispatcher("WEB-INF/lista-pessoas.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/view/lista-pessoas.jsp").forward(req, resp);
         } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
