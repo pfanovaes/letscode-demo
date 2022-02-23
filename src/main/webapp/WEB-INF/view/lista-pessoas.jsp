@@ -37,7 +37,7 @@
     <% } %>
 
     </table>
-    <button onclick="window.location.href='/app/controlador?acao=criar-pessoas-form'">
+    <button onclick="window.location.href='/app/controlador?acao=cadastrar-pessoas-form'">
         CADASTRAR NOVO
     </button>
 </body>

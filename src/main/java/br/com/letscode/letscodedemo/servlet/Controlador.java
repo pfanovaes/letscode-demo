@@ -2,6 +2,9 @@ package br.com.letscode.letscodedemo.servlet;
 
 import br.com.letscode.letscodedemo.dao.BancoDeDados;
 import br.com.letscode.letscodedemo.modelo.Pessoa;
+import br.com.letscode.letscodedemo.modelo.acao.CadastrarPessoas;
+import br.com.letscode.letscodedemo.modelo.acao.CadastrarPessoasForm;
+import br.com.letscode.letscodedemo.modelo.acao.ListarPessoas;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,27 +20,30 @@ public class Controlador extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
+        String path = null;
 
         if (acao.equals("cadastrar-pessoas")) {
-            String nome = req.getParameter("nome");
-            String sobrenome = req.getParameter("sobrenome");
-            String idade = req.getParameter("idade");
-            String data = req.getParameter("data");
 
-            Pessoa pessoa = new Pessoa(nome, sobrenome, idade, data);
-            // chama método responsável
-            cadastro(pessoa);
+            CadastrarPessoas cadastrarPessoas = new CadastrarPessoas(req, resp);
+            cadastrarPessoas.executar();
+
             resp.sendRedirect("/app/controlador?acao=listar-pessoas");
+
         } else if (acao.equals("listar-pessoas")) {
-            listar(req, resp);
+
+            ListarPessoas listarPessoas = new ListarPessoas(req, resp);
+            path = listarPessoas.executar();
+            req.getRequestDispatcher(path).forward(req, resp);
         } else if (acao.equals("remover-pessoas")) {
-            String id = req.getParameter("id");
-            remover(id);
+            //implementar
         } else if (acao.equals("alterar-pessoas")) {
             //implementar
-        } else if (acao.equals("criar-pessoas-form")) {
-            req.getRequestDispatcher("WEB-INF/view/formulario.html").forward(req, resp);
+        } else if (acao.equals("cadastrar-pessoas-form")) {
+            CadastrarPessoasForm form = new CadastrarPessoasForm();
+            path = form.executar();
         }
+
+        req.getRequestDispatcher(path).forward(req, resp);
     }
 
     public void cadastro(Pessoa pessoa) {
@@ -46,20 +52,7 @@ public class Controlador extends HttpServlet {
         bd.salvar(pessoa);
     }
 
-    public void listar(HttpServletRequest req, HttpServletResponse resp) {
-        BancoDeDados bd = new BancoDeDados();
-        List<Pessoa> pessoas = bd.listar();
-        req.setAttribute("pessoas", pessoas );
-        req.setAttribute("titulo", "Página de listagem de pessoas");
 
-        try {
-            req.getRequestDispatcher("WEB-INF/view/lista-pessoas.jsp").forward(req, resp);
-        } catch (IOException | ServletException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void remover(String id){
-        //implementar remover
-    }
+
 }
