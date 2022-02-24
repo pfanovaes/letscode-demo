@@ -23,8 +23,8 @@ public class ListarPessoas {
         BancoDeDados bd = new BancoDeDados();
         List<Pessoa> pessoas = bd.listar();
         req.setAttribute("pessoas", pessoas );
-        req.setAttribute("titulo", "Página de listagem de pessoas");
+        req.setAttribute("titulo", "Listagem de pessoas");
 
-        return "WEB-INF/view/lista-pessoas.jsp");
+        return "forward:lista-pessoas.jsp";
     }
 }

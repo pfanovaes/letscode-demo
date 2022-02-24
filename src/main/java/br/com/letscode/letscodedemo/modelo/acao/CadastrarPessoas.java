@@ -18,7 +18,7 @@ public class CadastrarPessoas {
         this.resp = resp;
     }
 
-    public void executar() {
+    public String executar() {
 
         String nome = req.getParameter("nome");
         String sobrenome = req.getParameter("sobrenome");
@@ -29,6 +29,8 @@ public class CadastrarPessoas {
 
         BancoDeDados bd = new BancoDeDados();
         bd.salvar(pessoa);
+
+        return "redirect:/app/controlador?acao=listar-pessoas";
     }
 
 }

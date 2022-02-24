@@ -1,7 +1,6 @@
 package br.com.letscode.letscodedemo.servlet;
 
-import br.com.letscode.letscodedemo.dao.BancoDeDados;
-import br.com.letscode.letscodedemo.modelo.Pessoa;
+
 import br.com.letscode.letscodedemo.modelo.acao.CadastrarPessoas;
 import br.com.letscode.letscodedemo.modelo.acao.CadastrarPessoasForm;
 import br.com.letscode.letscodedemo.modelo.acao.ListarPessoas;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 @WebServlet("/controlador")
 public class Controlador extends HttpServlet {
@@ -23,17 +22,11 @@ public class Controlador extends HttpServlet {
         String path = null;
 
         if (acao.equals("cadastrar-pessoas")) {
-
             CadastrarPessoas cadastrarPessoas = new CadastrarPessoas(req, resp);
-            cadastrarPessoas.executar();
-
-            resp.sendRedirect("/app/controlador?acao=listar-pessoas");
-
+            path = cadastrarPessoas.executar();
         } else if (acao.equals("listar-pessoas")) {
-
             ListarPessoas listarPessoas = new ListarPessoas(req, resp);
             path = listarPessoas.executar();
-            req.getRequestDispatcher(path).forward(req, resp);
         } else if (acao.equals("remover-pessoas")) {
             //implementar
         } else if (acao.equals("alterar-pessoas")) {
@@ -43,16 +36,15 @@ public class Controlador extends HttpServlet {
             path = form.executar();
         }
 
-        req.getRequestDispatcher(path).forward(req, resp);
+        String [] metodoECaminho = path.split(":");
+        if (metodoECaminho[0].equals("forward")) {
+            req.getRequestDispatcher("/WEB-INF/view/" + metodoECaminho[1]).forward(req, resp);
+        } else {
+            resp.sendRedirect(metodoECaminho[1]);
+        }
+
+
     }
-
-    public void cadastro(Pessoa pessoa) {
-
-        BancoDeDados bd = new BancoDeDados();
-        bd.salvar(pessoa);
-    }
-
-
 
 
 }
